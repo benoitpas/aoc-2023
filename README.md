@@ -15,4 +15,4 @@ Part 2 has a nice twist,because of cases like 'eightwothree' we can use a simple
 ```
 As the 'two' could be replaced before the 'eight'.
 
-Also without the hint on reddit I think it would have taken me a long time to find that'sevenine' should be '79'.
+Also without the hint on reddit I think it would have taken me a long time to find that pattern like 'sevenine' should be '79'.
