@@ -19,7 +19,10 @@ class Day2Test {
     val e = (1, List(List("blue"->3,"red"->4).toMap, List("red"->1, "green"->2,"blue"->6).toMap,List("green"->2).toMap))
     assertEquals(e, Day2.gameToDraws(games(0)))
 
-  @Test def part1() : Unit =
+  @Test def testPart1() : Unit =
     assertEquals(8, Day2.part1(games))
+
+  @Test def testPart2() : Unit =
+    assertEquals(2286, Day2.part2(games))
 
 }
