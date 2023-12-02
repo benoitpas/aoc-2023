@@ -16,3 +16,7 @@ Part 2 has a nice twist,because of cases like 'eightwothree' we can use a simple
 As the 'two' could be replaced before the 'eight'.
 
 Also without the hint on reddit I think it would have taken me a long time to find that pattern like 'sevenine' should be '79'.
+
+## Day2
+Part 1 is mostly about parsing the input, I went for a quick and dirty 'split' based solution. No to be used in prod, that would be very fragile !
+Part 2 was straightforward, we didn't even need to worry about interger overflows.
