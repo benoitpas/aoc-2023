@@ -4,11 +4,11 @@ import scala.io.BufferedSource
 
 object Day1 extends ZIOAppDefault {
 
-  def acquire = ZIO.attempt(scala.io.Source.fromFile("src/main/resources/day1_input.txt"))
+  def acquire(f:String) = ZIO.attempt(scala.io.Source.fromFile(s"src/main/resources/${f}"))
   def release = (buffer :BufferedSource) => ZIO.succeed(buffer.close)
   def process = (buffer :BufferedSource)=> ZIO.attempt(buffer.getLines.toList)
 
-  val readFile : Task[List[String]] = ZIO.acquireReleaseWith(acquire)(release)(process)
+  def readFile(f:String) : Task[List[String]] = ZIO.acquireReleaseWith(acquire(f))(release)(process)
 
   // Would fail if no digit but not an issue as input data is known
   def firstDigit(s: String) = s.filter(c => '0' <= c && c <='9').head - '0'
@@ -36,7 +36,7 @@ object Day1 extends ZIOAppDefault {
 
   def run =
     for {
-      v    <- readFile
+      v    <- readFile("day1_input.txt")
       _    <- printLine(s"part1=${part1(v)}")
       _    <- printLine(s"part2=${part2(v)}") // not 54871
     } yield ()
