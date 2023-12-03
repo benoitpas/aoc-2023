@@ -30,5 +30,14 @@ class Day3Test {
     assertEquals(List(592), Day3.findPartsNumber(hz))
 
   @Test def testPart1(): Unit =
-    assertEquals(4361, Day3.part1(schematics));
+    assertEquals(4361, Day3.part1(schematics))
+
+  @Test def testAddCoordinates(): Unit =
+    val e = List(
+      List(((1, 1), 'a'), ((2, 1), 'b'), ((3, 1), 'c')),
+      List(((1, 2), 'd'), ((2, 2), 'e'), ((3, 2), 'f')),
+      List(((1, 3), 'g'), ((2, 3), 'h'), ((3, 3), 'i'))
+    )
+    assertEquals(e, Day3.addCoordinates(List("abc", "def", "ghi")))
+
 }

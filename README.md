@@ -23,10 +23,16 @@ Part 1 is mostly about parsing the input, I went for a quick and dirty 'split' b
 Part 2 was straightforward, we didn't even need to worry about interger overflows.
 
 ## Day 3
-The most straightforward solution is probably to iterate over the grid, down to bottom and left to right to find the number and determines which ones are close to symbols.
+For part 1, the most straightforward solution is probably to iterate over the grid, down to bottom and left to right to find the number and determines which ones are close to symbols.
 
 Out of curiosity I'm going to try a solution where I zip the current line with the lines below and above (to find the nearby symbols) and then 'split' the line to find the symbols.
 
 Initially I thought it would be a lot more complex than the iterative approach but it turns out to be quite short.
 
 It may be interesting to try to implement the iterative solution with a state monad.
+
+Part 2 is a lot more complex. With Part 1 we need to find if they are symbols near numbers, part 2 is about finding numbers which are close to symbol `*``.
+
+With an iterative approach, we need to find if they are any digits close to a `*`` and then find the numbers that the digits belong to.
+
+With a declarative approach, we could generate the coordinates of all `*` and the coordinates of the areas around the numbers and that way find the numbers close to `*`. Part1 could also be solved using the same method.

@@ -8,7 +8,7 @@ object Day3 extends ZIOAppDefault {
     val pad = "." * s2(0).length
     pad :: s2.appended(pad)
 
-  def horizontalZip(pSchematics: List[String]): List[List[(Char, Char, Char)]] =
+  def horizontalZip[T](pSchematics: Seq[Seq[T]]): Seq[Seq[(T, T, T)]] =
     val n = pSchematics.length - 2
     val psr1 = pSchematics.take(n)
     val psr2 = pSchematics.tail.take(n)
@@ -26,7 +26,7 @@ object Day3 extends ZIOAppDefault {
 
   def isPart(col: (Char, Char, Char)): Boolean = isPart(col._1) || isPart(col._2) || isPart(col._3)
 
-  def findPartsNumber(zSchematics: List[(Char, Char, Char)]): List[Int] =
+  def findPartsNumber(zSchematics: Seq[(Char, Char, Char)]): Seq[Int] =
     zSchematics
       .foldLeft((List[Int](), "", false)) {
         case ((l, digits, isPartNumber), col) if isDigit(col._2) =>
@@ -42,8 +42,15 @@ object Day3 extends ZIOAppDefault {
       ._1
 
   def part1(schematics: List[String]) =
-    val zs = horizontalZip(padSchematics(schematics))
+    val zs = horizontalZip(padSchematics(schematics).map(_.toSeq))
     zs.flatMap(findPartsNumber).sum
+
+  def addCoordinates(schematics: List[String]) =
+    val nX = schematics(0).length()
+    val nY = schematics.length
+
+    val xyCoordinates = (1 to nY).map(y => (1 to nX).map(x => (x, y)))
+    (xyCoordinates zip schematics) map (_ zip _)
 
   def run =
     for {
