@@ -1,6 +1,5 @@
 import zio._
 import zio.Console._
-import scala.io.BufferedSource
 
 object Day2 extends ZIOAppDefault {
 

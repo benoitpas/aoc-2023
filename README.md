@@ -19,4 +19,14 @@ Also without the hint on reddit I think it would have taken me a long time to fi
 
 ## Day2
 Part 1 is mostly about parsing the input, I went for a quick and dirty 'split' based solution. No to be used in prod, that would be very fragile !
+
 Part 2 was straightforward, we didn't even need to worry about interger overflows.
+
+## Day 3
+The most straightforward solution is probably to iterate over the grid, down to bottom and left to right to find the number and determines which ones are close to symbols.
+
+Out of curiosity I'm going to try a solution where I zip the current line with the lines below and above (to find the nearby symbols) and then 'split' the line to find the symbols.
+
+Initially I thought it would be a lot more complex than the iterative approach but it turns out to be quite short.
+
+It may be interesting to try to implement the iterative solution with a state monad.
