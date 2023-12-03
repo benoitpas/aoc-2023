@@ -40,4 +40,33 @@ class Day3Test {
     )
     assertEquals(e, Day3.addCoordinates(List("abc", "def", "ghi")))
 
+  @Test def testFindNumbers() =
+    val hz = Day3.horizontalZip(Day3.addCoordinates(List(schematics(5), schematics(6), schematics(7))))(0)
+    val e = List(
+      (
+        592,
+        Set(
+          (2, 2),
+          (2, 1),
+          (4, 1),
+          (6, 2),
+          (5, 2),
+          (6, 3),
+          (3, 2),
+          (3, 1),
+          (3, 3),
+          (4, 3),
+          (5, 3),
+          (6, 1),
+          (4, 2),
+          (5, 1),
+          (2, 3)
+        )
+      )
+    )
+    assertEquals(e, Day3.findNumbers(hz))
+
+  @Test def testPart2() =
+    assertEquals(467835, Day3.part2(schematics))
+
 }

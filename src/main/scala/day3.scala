@@ -52,9 +52,43 @@ object Day3 extends ZIOAppDefault {
     val xyCoordinates = (1 to nY).map(y => (1 to nX).map(x => (x, y)))
     (xyCoordinates zip schematics) map (_ zip _)
 
+  def findNumbers(schematicsWCoords: Seq[(((Int, Int), Char), ((Int, Int), Char), ((Int, Int), Char))]) =
+    schematicsWCoords
+      .foldLeft((List[(Int, Set[(Int, Int)])](), "", Set[(Int, Int)]())) {
+        case ((l, digits, points), col) if isDigit(col._2._2) =>
+          (l, digits.appended(col._2._2), points ++ Set(col._1._1, col._2._1, col._3._1))
+        case ((l, digits, points), col) =>
+          val colPoints = Set(col._1._1, col._2._1, col._3._1)
+          val newL = if digits != "" then l.appended((digits.toInt, points ++ colPoints)) else l
+          (newL, "", colPoints)
+      }
+      ._1
+
+  def part2(schematics: List[String]) =
+    val sc = addCoordinates(padSchematics(schematics))
+    val zs = horizontalZip(sc)
+    val numbers = zs flatMap findNumbers
+    val starPositions = sc.flatten.flatMap {
+      case (p, '*') => Some(p)
+      case _        => None
+    }
+    starPositions
+      .map(p =>
+        numbers.toList.flatMap {
+          case (n, s) if s.contains(p) => Some(n)
+          case _                       => None
+        }
+      )
+      .map {
+        case a :: b :: Nil => a * b
+        case _             => 0
+      }
+      .sum
+
   def run =
     for {
       v <- Day1.readFile("day3_input.txt")
       _ <- printLine(s"part1=${part1(v)}")
+      _ <- printLine(s"part2=${part2(v)}")
     } yield ()
 }
