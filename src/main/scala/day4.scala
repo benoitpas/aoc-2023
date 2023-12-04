@@ -23,6 +23,7 @@ object Day4 extends ZIOAppDefault {
   def part2(cards: List[String]) =
     val cm = cards.map(parseCard).toMap
 
+    // Could probably do with memoization
     def countCards(index: Int): Int =
       1 + ((index + 1) to (index + cm(index))).map(countCards).sum
 
