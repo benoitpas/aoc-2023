@@ -12,11 +12,19 @@ class Day4Test {
     "Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11"
   )
 
+  val winningNumbers = Set(41, 48, 83, 86, 17)
+  val draw = Set(83, 86, 6, 31, 17, 9, 48, 53)
+
   @Test
-  def testCardValue() =
-    assertEquals(8, Day4.cardValue(cards(0)))
+  def testParseCard() =
+    assertEquals((1, 4), Day4.parseCard(cards(0)))
 
   @Test
   def testPart1() =
     assertEquals(13, Day4.part1(cards))
+
+  @Test
+  def testPart2() =
+    assertEquals(30, Day4.part2(cards))
+
 }
