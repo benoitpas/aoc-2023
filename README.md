@@ -35,4 +35,12 @@ Part 2 is a lot more complex. With Part 1 we need to find if they are symbols ne
 
 With an iterative approach, we need to find if they are any digits close to a `*`` and then find the numbers that the digits belong to.
 
-With a declarative approach, we could generate the coordinates of all `*` and the coordinates of the areas around the numbers and that way find the numbers close to `*`. Part1 could also be solved using the same method.
+With a declarative approach, we generate the coordinates of all `*` and the coordinates of the areas around the numbers and cpmputing the intersection, we find the numbers close to the `*`. Part1 could also be solved using a similar method.
+
+While implementing part 2, it was quite satisfying to be able to parametrise `horizontalZip()` using a type without having to change the implementation.
+
+## Day 4
+
+Part 1 is really simple, just a matter of converting the list of numbers to set and compute the intersection to find the numbers in common.
+
+Part 2 looks like a good showcase of recursion.
