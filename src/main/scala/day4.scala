@@ -26,9 +26,9 @@ object Day4 extends ZIOAppDefault {
 
   def part2(cards: List[String]) =
     // Add card 0 to add all cards
-    val cm = (cards.map(parseCard)++ List(0->cards.size)).toMap
+    val cm = (cards.map(parseCard) ++ List(0 -> cards.size)).toMap
 
-    lazy val countCards: Int => Int = memoize { case index =>
+    lazy val countCards: Int => Int = memoize { index =>
       1 + (index + 1 to index + cm(index)).map(countCards).sum
     }
 
