@@ -20,14 +20,19 @@ object Day4 extends ZIOAppDefault {
   def part1(cards: List[String]) =
     cards.map { card => math.pow(2, parseCard(card)._2 - 1).toInt }.sum
 
+  def memoize[I, O](f: I => O): I => O = new scala.collection.mutable.HashMap[I, O]() {
+    override def apply(key: I) = getOrElseUpdate(key, f(key))
+  }
+
   def part2(cards: List[String]) =
-    val cm = cards.map(parseCard).toMap
+    // Add card 0 to add all cards
+    val cm = (cards.map(parseCard)++ List(0->cards.size)).toMap
 
-    // Could probably do with memoization
-    def countCards(index: Int): Int =
-      1 + ((index + 1) to (index + cm(index))).map(countCards).sum
+    lazy val countCards: Int => Int = memoize { case index =>
+      1 + (index + 1 to index + cm(index)).map(countCards).sum
+    }
 
-    (1 to cm.size).map(countCards).sum
+    countCards(0) - 1 // Then remove card 0
 
   def run =
     for {
