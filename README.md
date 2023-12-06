@@ -44,3 +44,14 @@ While implementing part 2, it was quite satisfying to be able to parametrise `ho
 Part 1 is really simple, just a matter of converting the list of numbers to set and compute the intersection to find the numbers in common.
 
 Part 2 looks like a good showcase of recursion.
+
+## Day 5
+
+Part 1, no real difficulty, just need to use 64 bits signed ints to store the numbers.
+
+For Part 2, we need to adapt the algorithm to work with ranges instead of numbers. Because there are too many numbers (seeds), we cannot just expand the ranges to number and use part 1.
+
+## Day 6
+Part 1, the distances follow a discrete [parabola](https://en.wikipedia.org/wiki/Parabola). To simply count the number of points it is easier to iterate but it ia probably quite possible to find an analytical solution.
+
+Part 2, as the numbers are much bigger here we need the analytical solution ;-).
