@@ -1,5 +1,6 @@
 import org.junit.Test
 import org.junit.Assert._
+import Day6.nbDistances
 
 class Day6Test {
 
@@ -12,4 +13,9 @@ class Day6Test {
   @Test
   def testPart1() =
     assertEquals(288, Day6.part1(races))
+
+  @Test
+  def testPart2() =
+    assertEquals(71503, Day6.part2(races))
+
 }
