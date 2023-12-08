@@ -52,6 +52,19 @@ Part 1, no real difficulty, just need to use 64 bits signed ints to store the nu
 For Part 2, we need to adapt the algorithm to work with ranges instead of numbers. Because there are too many numbers (seeds), we cannot just expand the ranges to number and use part 1.
 
 ## Day 6
-Part 1, the distances follow a discrete [parabola](https://en.wikipedia.org/wiki/Parabola). To simply count the number of points it is easier to iterate but it ia probably quite possible to find an analytical solution.
+
+Part 1, the distances follow a discrete [parabola](https://en.wikipedia.org/wiki/Parabola). To simply count the number of points, it is easier to generate the points and count them. It is probably quite possible to find an analytical solution but the edge cases are probably tricky.
 
 Part 2, as the numbers are much bigger here we need the analytical solution ;-).
+
+## Day 7
+
+Part 1: We need to define the ordering on the hands of cards.
+
+Part 2: When a joker is present, we need to find the best card to 'upgrade' the hand. For example if we have one pair, we can use the joker to go to 2. To choose the card to make the pair, we can choose the 'strongest' of the possible 2 in case our newly created hand is compared to another 'two pair' hand.
+
+## Day 8
+
+Part 1: Here as the 'left/right' commands need to be repeated, in a language like Haskell with lazy evaluation we would have used a foldleft on the commands to find the solution. As Scala foldleft does not support stream (Scala version of lazy lists), I simply used a recursive function with tail recursion.
+
+Part 2: The input data has been very cleverly generated, here the state becomes a list.
