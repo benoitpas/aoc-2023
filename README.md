@@ -68,3 +68,7 @@ Part 2: When a joker is present, we need to find the best card to 'upgrade' the 
 Part 1: Here as the 'left/right' commands need to be repeated, in a language like Haskell with lazy evaluation we would have used a foldleft on the commands to find the solution. As Scala foldleft does not support stream (Scala version of lazy lists), I simply used a recursive function with tail recursion.
 
 Part 2: The input data has been very cleverly generated, here the state becomes a list.
+
+## Day 9
+
+Part 1: Quite easy to implement without a loop using a lazy stream
