@@ -71,4 +71,10 @@ Part 2: The input data has been very cleverly generated, here the state becomes 
 
 ## Day 9
 
-Part 1: Quite easy to implement without a loop using a lazy stream
+Part 1: Quite easy to implement without a loop using a lazy stream (I just remembered doing Day 10 they were deprecated and replaced by LazyList)
+
+Part 2: Adapt the extrapolation algorithm to use the first element of the seqquences instead of the last element.
+
+## Day 10
+
+Part 1: From the start, find all the distances ['breadth' first](https://en.wikipedia.org/wiki/Breadth-first_search) and stop when all positions in the loop have been explored. Implemented using a LazyList.
