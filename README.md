@@ -78,3 +78,11 @@ Part 2: Adapt the extrapolation algorithm to use the first element of the seqque
 ## Day 10
 
 Part 1: From the start, find all the distances ['breadth' first](https://en.wikipedia.org/wiki/Breadth-first_search) and stop when all positions in the loop have been explored. Implemented using a LazyList.
+
+Part 2:To find the points which are inside or outside, we can count the number of intersection between an outside point and the inside point. if the number is odd, then the point is inside, if it is even then the point is outside.
+
+## Day 11
+
+Part 1: In the previous example, to store the map, I hesitated between using a two dimensional array or a map of the coordinates to the point at the location. Here as the galaxies are quite sparsed, it makes sense to only keep the coordinates. That will also help when 'expanding' the empty spaces.
+
+Part 2: Here to store the larger coordinates I used Long instead of Int. The expansion coefficient was relatively easy to add
