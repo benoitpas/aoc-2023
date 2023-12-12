@@ -4,37 +4,77 @@ import scala.compiletime.ops.string
 
 object Day12 extends ZIOAppDefault {
 
-  def aCombinations(arrangement: String) =
-    (0 to arrangement.size - 1).foldLeft(List(arrangement)) {
-      case (arrangements, i) if arrangement(i) == '?' =>
-        arrangements.flatMap(a => List(a.take(i) + "." + a.drop(i + 1), a.take(i) + "#" + a.drop(i + 1)))
-      case (arrangements, _) => arrangements
-    }
+  def parseArrangements(strings: List[String]) =
+    strings.map(_.split(' ').toList match
+      case a :: c :: _ => (a, c.split(",").map(_.toInt).toList)
+    )
 
   def opSprings(springs: String) =
     springs
       .appended('.')
       .foldLeft((List[Int](), 0)) {
         case ((l, cnt), '#') => ((l, cnt + 1))
-        case ((l, 0), '.')   => ((l, 0))
-        case ((l, cnt), '.') => ((l.appended(cnt), 0))
+        case ((l, 0), _)     => ((l, 0))
+        case ((l, cnt), _)   => ((l.appended(cnt), 0))
       }
       ._1
 
-  def fCombinations(ac: (String, List[Int])) =
-    aCombinations(ac._1).filter(opSprings(_) == ac._2)
+  def checkMatch(springs: String, n: Int): String =
+    val nStr = List.fill(n)('#').mkString.appended('.')
+    val springs2 = springs
+    if springs2.size < nStr.size - 1 then ""
+    else
+      (nStr zip springs)
+        .foldLeft(Some(""): Option[String]) {
+          case (Some(s), (c1, c2)) if c1 == c2 || c2 == '?' => Some(s.appended(c1))
+          case _                                            => None
+        }
+        .getOrElse("")
 
-  def parseArrangements(strings: List[String]) =
-    strings.map(_.split(' ').toList match
-      case a :: c :: _ => (a, c.split(",").map(_.toInt).toList)
-    )
+  def fCombinations(ac: (String, List[Int])): List[String] = {
+    val springs = ac._1
+    val numbers = ac._2
+    if !springs.contains('?') || springs == "" then
+      if opSprings(springs) == numbers then List(springs)
+      else List()
+    else
+      {
+        if (springs.head == '#' || springs.head == '?') && !numbers.isEmpty then {
+          val m = checkMatch(springs, numbers.head)
+          if m.size > 0 then
+            val rSprings = springs.drop(m.size)
+            if numbers.size > 0 then
+              val nCombs = fCombinations((rSprings, numbers.tail))
+              nCombs.map(m ++ _)
+            else if !rSprings.contains('#') then List(springs)
+            else List[String]()
+          else List()
+        } else {
+          List[String]()
+        }
+      } ++ {
+        if springs.head == '.' || springs.head == '?' then fCombinations((springs.tail, numbers)).map("." ++ _)
+        else List()
+      }
+  }
 
   def part1(strings: List[String]) =
     parseArrangements(strings).map(fCombinations(_).size).sum
+
+  def part2(strings: List[String]) =
+    parseArrangements(strings).map {
+      case (springs, numbers) => {
+        printLine(springs)
+        val springs5 = List.fill(5)(springs).mkString("?")
+        val numbers5 = List.fill(5)(numbers).flatten
+        fCombinations(springs5, numbers5).size
+      }
+    }.sum
 
   def run =
     for {
       v <- Day1.readFile("day12_input.txt")
       _ <- printLine(s"part1=${part1(v)}")
+      _ <- printLine(s"part2=${part2(v)}")
     } yield ()
 }
