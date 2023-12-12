@@ -86,3 +86,11 @@ Part 2:To find the points which are inside or outside, we can count the number o
 Part 1: In the previous example, to store the map, I hesitated between using a two dimensional array or a map of the coordinates to the point at the location. Here as the galaxies are quite sparsed, it makes sense to only keep the coordinates. That will also help when 'expanding' the empty spaces.
 
 Part 2: Here to store the larger coordinates I used Long instead of Int. The expansion coefficient was relatively easy to add
+
+## Day 12
+
+Part 1: I'm going to initially generate all the possible combinations and filter them. There may be a smarter way but let's see if that works.
+
+Part 2: The brute force solution did work for part 1 with only a few seconds way but it is not going to work obviously for part 2. While working on part 1 I thought of a pre-filtering that should keep the number of combinations under control.
+
+Basically, no need to keep the combinations where the number of contiguous '#' is higher than any groups in the expected counts.
