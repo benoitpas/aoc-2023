@@ -1,12 +1,13 @@
 import zio._
 import zio.Console._
+import scala.compiletime.ops.string
 
 object Day12 extends ZIOAppDefault {
 
   def aCombinations(arrangement: String) =
     (0 to arrangement.size - 1).foldLeft(List(arrangement)) {
       case (arrangements, i) if arrangement(i) == '?' =>
-        arrangements.flatMap((a) => List(a.take(i) + "." + a.drop(i + 1), a.take(i) + "#" + a.drop(i + 1)))
+        arrangements.flatMap(a => List(a.take(i) + "." + a.drop(i + 1), a.take(i) + "#" + a.drop(i + 1)))
       case (arrangements, _) => arrangements
     }
 
@@ -23,12 +24,13 @@ object Day12 extends ZIOAppDefault {
   def fCombinations(ac: (String, List[Int])) =
     aCombinations(ac._1).filter(opSprings(_) == ac._2)
 
-  def part1(strings: List[String]) =
-    val arrangements = strings.map(s =>
-      s.split(' ').toList match
-        case a :: c :: _ => (a, c.split(",").map(_.toInt).toList)
+  def parseArrangements(strings: List[String]) =
+    strings.map(_.split(' ').toList match
+      case a :: c :: _ => (a, c.split(",").map(_.toInt).toList)
     )
-    arrangements.map(fCombinations(_).size).sum
+
+  def part1(strings: List[String]) =
+    parseArrangements(strings).map(fCombinations(_).size).sum
 
   def run =
     for {
