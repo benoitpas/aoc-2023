@@ -22,18 +22,18 @@ class Day11Test {
 
   @Test
   def testPart1() =
-    assertEquals(374, Day11.part1(space, 1))
+    assertEquals(374, Day11.sumDistances(space, 1))
 
   @Test
   def testPart1b() =
-    assertEquals(50, Day11.part1(space2, 1))
+    assertEquals(50, Day11.sumDistances(space2, 1))
 
   @Test
   def testPart2a() =
-    assertEquals(1030, Day11.part1(space, 9))
+    assertEquals(1030, Day11.sumDistances(space, 9))
 
   @Test
   def testPart2b() =
-    assertEquals(8410, Day11.part1(space, 99))
+    assertEquals(8410, Day11.sumDistances(space, 99))
 
 }

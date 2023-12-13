@@ -1,6 +1,5 @@
 import zio._
 import zio.Console._
-import Day6.nbDistances
 
 object Day11 extends ZIOAppDefault {
 
@@ -16,7 +15,7 @@ object Day11 extends ZIOAppDefault {
       (g1._2 - g2._2).abs + expansion * emptyRows.count(y => math.min(g1._2, g2._2) < y && y < math.max(g1._2, g2._2))
     cols + rows
 
-  def part1(space: List[String], expansion: Int) =
+  def sumDistances(space: List[String], expansion: Int) =
     val galaxies = {
       for
         (y, l) <- (1L to space.length) zip space
@@ -36,7 +35,7 @@ object Day11 extends ZIOAppDefault {
   def run =
     for {
       v <- Day1.readFile("day11_input.txt")
-      _ <- printLine(s"part1=${part1(v, 1)}")
-      _ <- printLine(s"part2=${part1(v, 999999)}")
+      _ <- printLine(s"part1=${sumDistances(v, 1)}")
+      _ <- printLine(s"part2=${sumDistances(v, 999999)}")
     } yield ()
 }
