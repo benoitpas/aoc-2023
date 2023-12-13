@@ -1,6 +1,5 @@
 import zio._
 import zio.Console._
-import Day6.nbDistances
 
 object Day10 extends ZIOAppDefault {
 
