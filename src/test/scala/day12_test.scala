@@ -18,11 +18,11 @@ class Day12Test {
 
   @Test
   def testFCombinations2a() =
-    assertEquals(List("#.#.###"), Day12.fCombinations(("???.###", List(1, 1, 3))))
+    assertEquals(1, Day12.fCombinations(("???.###", List(1, 1, 3))))
 
   @Test
   def testFCombinations2b() =
-    assertEquals(10, Day12.fCombinations(("?###????????", List(3, 2, 1))).size)
+    assertEquals(10, Day12.fCombinations(("?###????????", List(3, 2, 1))))
 
   @Test
   def testPart2() =

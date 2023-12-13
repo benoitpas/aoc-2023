@@ -31,35 +31,32 @@ object Day12 extends ZIOAppDefault {
         }
         .getOrElse("")
 
-  def fCombinations(ac: (String, List[Int])): List[String] = {
+  def fCombinations(ac: (String, List[Int])): Int = {
     val springs = ac._1
     val numbers = ac._2
     if !springs.contains('?') || springs == "" then
-      if opSprings(springs) == numbers then List(springs)
-      else List()
+      if opSprings(springs) == numbers then 1
+      else 0
     else
-      {
-        if (springs.head == '#' || springs.head == '?') && !numbers.isEmpty then {
+      (
+        if (springs.head == '#' || springs.head == '?') && !numbers.isEmpty then
           val m = checkMatch(springs, numbers.head)
           if m.size > 0 then
             val rSprings = springs.drop(m.size)
-            if numbers.size > 0 then
-              val nCombs = fCombinations((rSprings, numbers.tail))
-              nCombs.map(m ++ _)
-            else if !rSprings.contains('#') then List(springs)
-            else List[String]()
-          else List()
-        } else {
-          List[String]()
-        }
-      } ++ {
-        if springs.head == '.' || springs.head == '?' then fCombinations((springs.tail, numbers)).map("." ++ _)
-        else List()
-      }
+            if numbers.size > 0 then fCombinations((rSprings, numbers.tail))
+            else if !rSprings.contains('#') then 1
+            else 0
+          else 0
+        else 0
+      )
+      + (
+        if springs.head == '.' || springs.head == '?' then fCombinations((springs.tail, numbers))
+        else 0
+      )
   }
 
   def part1(strings: List[String]) =
-    parseArrangements(strings).map(fCombinations(_).size).sum
+    parseArrangements(strings).map(fCombinations(_)).sum
 
   def part2(strings: List[String]) =
     parseArrangements(strings).map {
@@ -67,7 +64,7 @@ object Day12 extends ZIOAppDefault {
         printLine(springs)
         val springs5 = List.fill(5)(springs).mkString("?")
         val numbers5 = List.fill(5)(numbers).flatten
-        fCombinations(springs5, numbers5).size
+        fCombinations(springs5, numbers5)
       }
     }.sum
 
