@@ -1,6 +1,5 @@
 import zio._
 import zio.Console._
-import scala.compiletime.ops.string
 
 object Day13 extends ZIOAppDefault {
 
