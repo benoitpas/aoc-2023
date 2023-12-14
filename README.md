@@ -94,3 +94,7 @@ Part 1: I'm going to initially generate all the possible combinations and filter
 Part 2: The brute force solution did work for part 1 with only a few seconds way but it is not going to work obviously for part 2. While working on part 1 I thought of a pre-filtering that should keep the number of combinations under control.
 
 Basically, no need to keep the combinations where the number of contiguous '#' is higher than any groups in the expected counts. Looking again at the problem, that may not be enough. A backtracking where we iteratively check the number of combinations may be better.
+
+## Day 13
+
+Part 1: classic AoC problem where we need to look for symetries. To help with the checks of vertical symetries I used array to store the patterns. Thinking about it, I could have used indexed sequenced as well. At least implementing the function that looks for horizontal symetries, I learned about [sameElements](https://nrinaudo.github.io/scala-best-practices/unsafe/array_comparison.html).
