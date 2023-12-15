@@ -3,8 +3,6 @@ import zio.Console._
 
 object Day14 extends ZIOAppDefault {
 
-  def parsePlatform(strings: List[String]) = ???
-
   def part1(platform: List[String]) =
     val nbCol = platform.length
     val rocks =
