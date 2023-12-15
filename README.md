@@ -83,7 +83,7 @@ Part 2:To find the points which are inside or outside, we can count the number o
 
 ## Day 11
 
-Part 1: In the previous example, to store the map, I hesitated between using a two dimensional array or a map of the coordinates to the point at the location. Here as the galaxies are quite sparsed, it makes sense to only keep the coordinates. That will also help when 'expanding' the empty spaces.
+Part 1: In the previous example, to store the map, I hesitated between using a two dimensional array or a map of the coordinates to the point at the location. Here as the galaxies are quite sparsed, it makes sense to use a map and only keep the coordinates. That will also help when 'expanding' the empty spaces.
 
 Part 2: Here to store the larger coordinates I used Long instead of Int. The expansion coefficient was relatively easy to add
 
@@ -98,3 +98,11 @@ Basically, no need to keep the combinations where the number of contiguous '#' i
 ## Day 13
 
 Part 1: classic AoC problem where we need to look for symetries. To help with the checks of vertical symetries I used array to store the patterns. Thinking about it, I could have used indexed sequenced as well. At least implementing the function that looks for horizontal symetries, I learned about [sameElements](https://nrinaudo.github.io/scala-best-practices/unsafe/array_comparison.html).
+
+Part 2: One way to solve it without increasing the complexity would be to count the number of differences for each possible symetry and keep the ones with only 1 difference.
+
+## Day 14
+
+Part 1: Here are the rocks are quite sparse and the squared one are not going to move, I used Sets to store the coordinates. Then the code to move them is quite straightforward, especially that they were already ordered from north to south so only one pass is necessary to move them all.
+
+Part 2: By changing the order the rounded rocks to also do a one pass processing, the processing time for 1 step should still be linear with the number of rounded rocks. After a number of steps, the movements may repeat themselves so it may be good to memoize some of the transforms.
