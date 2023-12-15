@@ -30,15 +30,19 @@ class Day13Test {
   val patterns = Day13.parseValley(valley)
 
   @Test
-  def testFindHorizontalReflection() =
-    assertEquals(Some(4), Day13.findHorizontalReflection(patterns(1)))
+  def testFindHorizontalReflection1() =
+    assertEquals(Some(4), Day13.findHorizontalReflection(patterns(1), 0))
 
   @Test
-  def testFindReflection() =
-    assertEquals(3, Day13.findReflection(pattern))
+  def testFindReflection1() =
+    assertEquals(3, Day13.findReflection(0)(pattern))
 
   @Test
   def testPart1() =
-    assertEquals(405, Day13.part1(valley))
+    assertEquals(405, Day13.part12(valley, 0))
+
+  @Test
+  def testPart2() =
+    assertEquals(400, Day13.part12(valley, 1))
 
 }
