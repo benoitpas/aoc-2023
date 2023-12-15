@@ -9,4 +9,8 @@ class Day15Test {
   def testPart1() =
     assertEquals(1320, Day15.part1(cmds))
 
+  @Test
+  def testPart2() =
+    assertEquals(145, Day15.part2(cmds))
+
 }

@@ -115,4 +115,4 @@ Part 2: By changing the order the rounded rocks to also do a one pass processing
 
 Part 1: Suprisingly simple !
 
-Part 2: The main difficulty is understanding the instructions.
+Part 2: The main difficulty is understanding the instructions and then find out how to model the data.
