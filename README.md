@@ -6,6 +6,10 @@ Scala3 has matured a lot since 2020, when I last did the [advent of code with it
 
 So after python (and Excel !) in [2021](https://github.com/benoitpas/advent-of-code-2021) and haskell (and Excel again when possible !) in [2922](https://github.com/benoitpas/advent-of-code-2021), let's give it another go ! Probably no Excel this year but maybe a bit of [ZIO](https://typelevel.org/projects/) or the [cats ecosystem](https://typelevel.org/projects/).
 
+The way I write the code here is very different from how I would write code for a production system. It is on purpose the code crashes on 'unexpected' input, I use that to understand the type of input we are given for the day puzzle. If my expections are not match, then I will know quickly as the code fails. Also for the puzzle, we only need to process the input given, there is no need to make the code robust to handle more varied inputs.
+
+In a prod system the approach would be totally different, the code would handle as many variations of the input as possible but would report in the monitoring system unexpected inputs so that we can analyse it and maybe report to the customer upstream that it looks they is an issue with their requests (or we would fix our system if we misunderstood what the customer wants or the data we should expect).
+
 ## Day1
 Part 1 was straightforward and helped me setup my project
 Part 2 has a nice twist,because of cases like 'eightwothree' we can use a simple replacement logic like the following:
@@ -17,7 +21,7 @@ As the 'two' could be replaced before the 'eight'.
 
 Also without the hint on reddit I think it would have taken me a long time to find that pattern like 'sevenine' should be '79'.
 
-## Day2
+## Day 2
 Part 1 is mostly about parsing the input, I went for a quick and dirty 'split' based solution. No to be used in prod, that would be very fragile !
 
 Part 2 was straightforward, we didn't even need to worry about interger overflows.
@@ -106,3 +110,9 @@ Part 2: One way to solve it without increasing the complexity would be to count 
 Part 1: Here are the rocks are quite sparse and the squared one are not going to move, I used Sets to store the coordinates. Then the code to move them is quite straightforward, especially that they were already ordered from north to south so only one pass is necessary to move them all.
 
 Part 2: By changing the order the rounded rocks to also do a one pass processing, the processing time for 1 step should still be linear with the number of rounded rocks. After a number of steps, the movements may repeat themselves so it may be good to memoize some of the transforms.
+
+## Day 15
+
+Part 1: Suprisingly simple !
+
+Part 2: The main difficulty is understanding the instructions.
