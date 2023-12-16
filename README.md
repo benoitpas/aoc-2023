@@ -10,6 +10,8 @@ The way I write the code here is very different from how I would write code for 
 
 In a prod system the approach would be totally different, the code would handle as many variations of the input as possible but would report in the monitoring system unexpected inputs so that we can analyse it and maybe report to the customer upstream that it looks they is an issue with their requests (or we would fix our system if we misunderstood what the customer wants or the data we should expect).
 
+Another difference is that appart from the function that reads the input file, I don't reuse code between problems. Altough, there are numerous functions (like converting an asci map to a grid), I don't put them in a library because I want each day's solution to be understandable on its own.
+
 ## Day1
 Part 1 was straightforward and helped me setup my project
 Part 2 has a nice twist,because of cases like 'eightwothree' we can use a simple replacement logic like the following:
@@ -116,3 +118,7 @@ Part 2: By changing the order the rounded rocks to also do a one pass processing
 Part 1: Suprisingly simple !
 
 Part 2: The main difficulty is understanding the instructions and then find out how to model the data.
+
+## Day 16
+
+Part 1: Another grid, another choice on how to store the grid. To avoid having to check if the coordinates are out of the grid, I'm going to store the points in a map. Also the light beams can get into a 'loop' so the logic needs to keep track of the location/directions which have already been explored.
