@@ -122,3 +122,5 @@ Part 2: The main difficulty is understanding the instructions and then find out 
 ## Day 16
 
 Part 1: Another grid, another choice on how to store the grid. To avoid having to check if the coordinates are out of the grid, I'm going to store the points in a map. Also the light beams can get into a 'loop' so the logic needs to keep track of the location/directions which have already been explored.
+
+Part 2: I'm not sure we can do anything smarter than trying all the possible combinations so part 1 has to be efficient enough.

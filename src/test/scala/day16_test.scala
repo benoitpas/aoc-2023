@@ -18,4 +18,8 @@ class Day16Test {
   def testPart1() =
     assertEquals(46, Day16.part1(grid))
 
+  @Test
+  def testPart2() =
+    assertEquals(51, Day16.part2(grid))
+
 }
